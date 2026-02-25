@@ -1,43 +1,26 @@
 package nimblix.in.HealthCareHub.model;
 
 import jakarta.persistence.*;
-import lombok.*;
-import nimblix.in.HealthCareHub.utility.HealthCareUtil;
+import lombok.Data;
+import nimblix.in.HealthCareHub.model.Payment;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "payments")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@Data
 public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Long appointmentId;
+    private Long patientId;
+
     private Double amount;
-    private String paymentStatus;
+    private String paymentMethod;
+    private String transactionId;
+    private String status;
+
     private LocalDateTime paymentDate;
-
-    @OneToOne
-    @JoinColumn(name = "appointment_id")
-    private Appointment appointment;
-
-    private String createdTime;
-    private String updatedTime;
-
-    @PrePersist
-    protected void onCreate(){
-        createdTime = HealthCareUtil.changeCurrentTimeToLocalDateFromGmtToISTInString();
-        updatedTime = createdTime;
-    }
-
-    @PreUpdate
-    protected void onUpdate(){
-        updatedTime = HealthCareUtil.changeCurrentTimeToLocalDateFromGmtToISTInString();
-    }
 }
