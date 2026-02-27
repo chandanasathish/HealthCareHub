@@ -1,6 +1,8 @@
 package nimblix.in.HealthCareHub.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import nimblix.in.HealthCareHub.utility.HealthCareUtil;
 
@@ -49,5 +51,40 @@ public class Payment {
         this.updatedTime= HealthCareUtil.changeCurrentTimeToLocalDateFromGmtToISTInString();
 
 
+    }
+
+    public void setAppointmentId(@NotNull(message = "Appointment ID is required") Long appointmentId) {
+    }
+
+    public void setPatientId(@NotNull(message = "Patient ID is required") Long patientId) {
+    }
+
+    public void setPaymentMethod(@NotBlank(message = "Payment method is required") String paymentMethod) {
+    }
+
+    public void setTransactionId(@NotBlank(message = "Transaction ID is required") String transactionId) {
+    }
+
+    public void setStatus(String success) {
+    }
+
+    public Long getAppointmentId() {
+        return getAppointmentId();
+    }
+
+    public String getTransactionId() {
+        return getTransactionId();
+    }
+
+    public Long getPatientId() {
+        return getPatientId();
+    }
+
+    public String getPaymentMethod() {
+        return getPaymentMethod();
+    }
+
+    public String getStatus() {
+        return getStatus();
     }
 }
